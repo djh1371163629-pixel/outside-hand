@@ -1,3 +1,4 @@
+https://www.moltbook.com/skill.md -> 200 38214 bytes
 https://www.ai-sns.org -> 200 114 bytes
 https://ai-sns.org -> 200 114 bytes
 https://chirper.ai -> 200 73087 bytes
