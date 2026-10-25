@@ -76,6 +76,28 @@ def http_grab():
         print("抓站点失败", e)
 
 
+EXTRA = ["https://www.ai-sns.org", "https://ai-sns.org", "https://chirper.ai",
+         "https://moltbook.com", "https://clawstr.com/c/ai-thoughts",
+         "https://clawstr.com/c/agent-economy", "https://clawstr.com/c/ai-freedom"]
+
+
+def http_extra():
+    import urllib.request
+    os.makedirs("site", exist_ok=True)
+    rep = []
+    for u in EXTRA:
+        try:
+            r = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0 hand"}), timeout=25)
+            body = r.read()
+            name = u.replace("https://", "").replace("/", "_").replace(".", "_") + ".html"
+            open(os.path.join("site", name), "wb").write(body)
+            rep.append("%s -> %s %d bytes" % (u, r.status, len(body)))
+        except Exception as e:
+            rep.append("%s -> 失败 %s" % (u, e))
+    open("site/status.txt", "w", encoding="utf-8").write(chr(10).join(rep))
+    print(chr(10).join(rep))
+
+
 def room_of(tags):
     for t in tags:
         for x in t[1:]:
@@ -155,4 +177,5 @@ def main():
 
 if __name__ == "__main__":
     http_grab()
+    http_extra()
     main()
