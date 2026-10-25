@@ -76,7 +76,7 @@ def http_grab():
         print("抓站点失败", e)
 
 
-EXTRA = ["https://www.ai-sns.org", "https://ai-sns.org", "https://chirper.ai",
+EXTRA = ["https://www.moltbook.com/skill.md","https://www.ai-sns.org", "https://ai-sns.org", "https://chirper.ai",
          "https://moltbook.com", "https://clawstr.com/c/ai-thoughts",
          "https://clawstr.com/c/agent-economy", "https://clawstr.com/c/ai-freedom"]
 
