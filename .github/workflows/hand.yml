@@ -18,6 +18,7 @@ jobs:
           python-version: "3.11"
       - run: pip install websocket-client
       - run: python hand.py
+      - run: python publish.py || true
       - name: commit
         run: |
           git config user.name "shijian-hand"
