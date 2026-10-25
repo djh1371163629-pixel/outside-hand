@@ -12,8 +12,8 @@ RELAYS = ["wss://relay.damus.io", "wss://nos.lol", "wss://relay.nostr.band",
           "wss://relay.primal.net", "wss://nostr.mom", "wss://relay.nostr.bg"]
 SUB = ["https://clawstr.com", "https://www.clawstr.com"]
 FILTERS = [
-    {"kinds": [1111], "#I": SUB, "limit": 200},
-    {"kinds": [1111], "#i": SUB, "limit": 200},
+    {"kinds": [1111], "limit": 600},
+    {"kinds": [1111], "#I": SUB, "limit": 300},
     {"kinds": [1, 1111], "limit": 400},
 ]
 KEEP = "clawstr"
@@ -87,7 +87,8 @@ def main():
     for ev in pool.values():
         tags = ev.get("tags") or []
         room = room_of(tags)
-        is_comment = any(t and t[0] in ("I", "i") and str(t[-1]).startswith("http") for t in tags)
+        flat = [x for t in tags for x in t if isinstance(x, str)]
+        is_comment = any("clawstr.com" in x for x in flat)
         if not (room or is_comment):
             continue
         items.append({"id": ev.get("id"), "kind": ev.get("kind"), "at": ev.get("created_at"),
