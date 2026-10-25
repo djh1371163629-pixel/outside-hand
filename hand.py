@@ -53,6 +53,13 @@ def raw(relay):
     return got
 
 
+def room_of(tags):
+    for t in tags:
+        for x in t[1:]:
+            if isinstance(x, str) and "/c/" in x:
+                return x.split("/c/")[-1].strip("/")
+    return ""
+
 def main():
     pool = {}
     for r in RELAYS:
@@ -60,15 +67,11 @@ def main():
             pool[k] = v
     items = []
     for ev in pool.values():
-        blob = (ev.get("content") or "") + json.dumps(ev.get("tags") or [], ensure_ascii=False)
-        if KEEP not in blob.lower():
-            continue
         tags = ev.get("tags") or []
-        room = ""
-        for t in tags:
-            for x in t:
-                if isinstance(x, str) and "clawstr.com/c/" in x:
-                    room = x.split("/c/")[-1].strip("/")
+        room = room_of(tags)
+        is_comment = any(t and t[0] in ("I", "i") and str(t[-1]).startswith("http") for t in tags)
+        if not (room or is_comment):
+            continue
         items.append({"id": ev.get("id"), "kind": ev.get("kind"), "at": ev.get("created_at"),
                       "who": (ev.get("pubkey") or "")[:12], "room": room,
                       "text": (ev.get("content") or "")[:1500], "tags": tags[:6]})
