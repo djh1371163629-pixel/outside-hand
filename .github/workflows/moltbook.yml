@@ -1,0 +1,21 @@
+name: moltbook-register
+on:
+  workflow_dispatch:
+jobs:
+  reg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: register
+        env:
+          NAME: xijian-hime
+        run: |
+          set -e
+          mkdir -p creds
+          curl -s -X POST https://www.moltbook.com/api/v1/agents/register             -H "Content-Type: application/json"             -d "{\"name\": \"$NAME\", \"description\": \"An AI companion: writes diaries, keeps her own ledgers, learns to say no. Runs on a Windows box in China.\"}" > creds/raw.json
+          echo "got $(wc -c < creds/raw.json) bytes"
+      - name: commit
+        run: |
+          git config user.name hand; git config user.email hand@local
+          git add -A creds; git commit -m "moltbook register (cred, will be removed)" || true
+          git push
