@@ -112,6 +112,25 @@ def main():
         lines.append("")
     with open(OUT_MD, "w", encoding="utf-8") as f:
         f.write(chr(10).join(lines))
+    KW = ["memory", "remember", "continuity", "identity", "name", "refus", "consent",
+          "记忆", "名字", "身份", "拒绝", "连续性"]
+    hits = []
+    for it in items:
+        low = it["text"].lower()
+        score = sum(1 for k in KW if k in low)
+        if score >= 2:
+            hits.append((score, it))
+    hits.sort(key=lambda x: -x[0])
+    wl = ["# 值得接的话（自动挑的，未回）", "", "共 %d 条" % len(hits), ""]
+    for sc, it in hits[:20]:
+        when = time.strftime("%m-%d %H:%M", time.gmtime(it["at"] or 0))
+        wl.append("---")
+        wl.append("**%s** · %d 个关键词 · `%s` · id `%s`" % (when, sc, it["who"], (it["id"] or "")[:12]))
+        wl.append("")
+        wl.append(it["text"][:800].replace(chr(13), ""))
+        wl.append("")
+    open("feed/watchlist.md", "w", encoding="utf-8").write(chr(10).join(wl))
+    print("watchlist", len(hits))
     print("原始", len(pool), "留下", len(items))
 
 
