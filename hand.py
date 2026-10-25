@@ -53,6 +53,24 @@ def raw(relay):
     return got
 
 
+def http_grab():
+    import urllib.request, re
+    os.makedirs("site", exist_ok=True)
+    try:
+        req = urllib.request.Request("https://clawstr.com", headers={"User-Agent": "Mozilla/5.0 hand"})
+        html = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "replace")
+        open("site/index.html", "w", encoding="utf-8").write(html)
+        print("站点首页", len(html))
+        m = re.findall(r'src="(/assets/[^"]+\.js)"', html)
+        for i, src in enumerate(m[:3]):
+            u = "https://clawstr.com" + src
+            js = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0 hand"}), timeout=40).read().decode("utf-8", "replace")
+            open("site/app%d.js" % i, "w", encoding="utf-8").write(js)
+            print("脚本", src, len(js))
+    except Exception as e:
+        print("抓站点失败", e)
+
+
 def room_of(tags):
     for t in tags:
         for x in t[1:]:
@@ -97,4 +115,5 @@ def main():
 
 
 if __name__ == "__main__":
+    http_grab()
     main()
