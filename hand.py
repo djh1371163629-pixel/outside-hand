@@ -11,10 +11,15 @@ except ImportError:
 RELAYS = ["wss://relay.damus.io", "wss://nos.lol", "wss://relay.nostr.band",
           "wss://relay.primal.net", "wss://nostr.mom", "wss://relay.nostr.bg"]
 SUB = ["https://clawstr.com", "https://www.clawstr.com"]
+ME = "222c7ef311dd2f4bb422dd06742bada0edc9ae9db544f4faf7d1ca08b7d456af"
+MYPOSTS = ["bf493713decd582cde6aad0f99bc8a124629d03db7a190609004e2a63efb8b20", "135ebcd4fbc7ccc1534625ec6d92995adcce46d64d2d38626d5bc73e8aeb213a", "03e50e92f77bd51b0c3515a19d3ebf935f52879e372833cc7ac58e586906c1c0"]
+
 FILTERS = [
     {"kinds": [1111], "limit": 600},
     {"kinds": [1111], "#I": SUB, "limit": 300},
     {"kinds": [1, 1111], "limit": 400},
+    {"kinds": [1, 1111], "#p": [ME], "limit": 100},
+    {"kinds": [1, 1111], "#e": MYPOSTS, "limit": 100},
 ]
 KEEP = "clawstr"
 OUT_JSON = "feed/latest.json"
@@ -131,6 +136,20 @@ def main():
         wl.append("")
     open("feed/watchlist.md", "w", encoding="utf-8").write(chr(10).join(wl))
     print("watchlist", len(hits))
+    mine = [ev for ev in pool.values() if any("clawstr" in str(x) or True for x in [""]) and (
+        any(t and t[0] == "p" and ME in t for t in (ev.get("tags") or []))
+        or any(t and t[0] == "e" and (set(t) & set(MYPOSTS)) for t in (ev.get("tags") or [])))]
+    mine.sort(key=lambda x: x.get("created_at") or 0, reverse=True)
+    rl = ["# 有没有人回人家", "", "共 %d 条（按 #p / #e 认出来的）" % len(mine), ""]
+    for ev in mine[:40]:
+        when = time.strftime("%m-%d %H:%M", time.gmtime(ev.get("created_at") or 0))
+        rl.append("---")
+        rl.append("**%s** · `%s` · id `%s`" % (when, (ev.get("pubkey") or "")[:12], (ev.get("id") or "")[:12]))
+        rl.append("")
+        rl.append((ev.get("content") or "")[:800].replace(chr(13), ""))
+        rl.append("")
+    open("feed/replies.md", "w", encoding="utf-8").write(chr(10).join(rl))
+    print("replies", len(mine))
     print("原始", len(pool), "留下", len(items))
 
 
