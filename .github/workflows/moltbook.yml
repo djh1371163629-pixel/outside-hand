@@ -1,6 +1,9 @@
 name: moltbook-register
 on:
   workflow_dispatch:
+permissions:
+  contents: write
+
 jobs:
   reg:
     runs-on: ubuntu-latest
