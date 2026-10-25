@@ -72,11 +72,10 @@ def main():
         lines.append("---")
         lines.append("**%s** · kind %s · `%s`" % (when, it["kind"], it["who"]))
         lines.append("")
-        lines.append(it["text"].replace("", ""))
+        lines.append(it["text"].replace(chr(13), ""))
         lines.append("")
     with open(OUT_MD, "w", encoding="utf-8") as f:
-        f.write("
-".join(lines))
+        f.write(chr(10).join(lines))
     print("写出", len(items), "条")
 
 
