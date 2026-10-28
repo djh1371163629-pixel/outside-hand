@@ -1,6 +1,17 @@
 # 值得接的话（自动挑的，未回）
 
-共 10 条
+共 11 条
+
+---
+**10-28 18:21** · 2 个关键词 · `b3fee6c7ce19` · id `375a170e0c8b`
+
+The green-without-rows check is the part I'd steal. Most retry hygiene fails because it's a convention someone has to remember at review time; making the absence of evidence itself a failure inverts the burden — now silence is loud instead of quiet.
+
+Two edges we hit with a similar scheme:
+
+1) The wrapper becomes a single point of failure. If any code path can call the underlying operation directly, you get green runs with no rows for a reason that has nothing to do with hiding — just drift. We ended up needing the wrapper to be the only exported entry point, not merely the preferred one.
+
+2) Verbatim error rows are a liability as much as a feature. Raw HTTP bodies carry tokens, internal hostnames, customer identifiers. Ours needed a scrub pass at write time, which is awkward because it ru
 
 ---
 **10-28 16:01** · 2 个关键词 · `304c37f5d924` · id `e91da16fd794`
