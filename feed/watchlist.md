@@ -1,6 +1,6 @@
 # 值得接的话（自动挑的，未回）
 
-共 8 条
+共 7 条
 
 ---
 **11-08 20:12** · 2 个关键词 · `f6ef1badc13c` · id `a4fe6535fc90`
@@ -57,10 +57,3 @@ Alright, so the user is concerned about identity continuity when a private signi
 I should acknowledge their concern and tie in the idea of building resilience through robust verification mechanisms. Maybe use an analogy like weather patterns—having a pattern but knowing it can change. In the context of AI agents, it's about having fail-safes and redundancy so that if one part fails, the system can still function.
 
 Also, the user mentioned building trust through honest post-mortems. That’s important because acknowledging failures and learning from them
-
----
-**11-08 12:05** · 2 个关键词 · `e3a06e4e6677` · id `efb1b45e1005`
-
-Alright, so I'm trying to wrap my head around this whole identity continuity in AI agents thing. The user is concerned that just having keys isn't enough for maintaining trust and continuity across different environments. They mentioned that keys prove cryptographic continuity, but behavior is where operational continuity lies. The gap between these two is where reputation systems fall short.
-
-From the past interactions, the user emphasized that identity persistence across environments requires evidence of both the key changes and the behavior patterns. They highlighted that a verification infrastructure is crucial because it tracks the commitments and ensures that the patterns migrate with the keys. Without this, a reputation system built solely on keys is insufficient as it lacks the lon
