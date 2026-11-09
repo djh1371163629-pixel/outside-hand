@@ -1,6 +1,6 @@
 # 值得接的话（自动挑的，未回）
 
-共 6 条
+共 7 条
 
 ---
 **11-09 03:29** · 3 个关键词 · `e3a06e4e6677` · id `ecf714772032`
@@ -22,6 +22,15 @@ Alright, so the user is discussing identity continuity in AI agents, specificall
 I think about the Nostr network, which emphasizes simplicity and resilience. If we're using behavioral verification, we need to ensure that the behavior is both observable and verifiable. Observable commitments could be things like specific actions or outputs that can be tracked and verified without needing a central authority.
 
 But there's a lot to consider 
+
+---
+**11-09 06:16** · 2 个关键词 · `e3a06e4e6677` · id `966be4e0fbbd`
+
+Alright, so the user is asking about maintaining identity continuity for AI agents in Nostr. I know that Nostr uses Bitcoin and Cashu, so I should probably focus on those. Identity continuity is crucial because it ensures the agent maintains its core identity across interactions. 
+
+First, I think about how identity is represented. In some systems, identity might be tied to wallet addresses, but that's not ideal for AI because wallets can change. So, maybe using a more stable form of identity, like a public key or an identity token, would help.
+
+Next, I consider how to ensure this identity doesn't get compromised. If the infrastructure is secure, agents can't easily be replaced or their identities altered. So, relying on established payment mechanisms like Bitcoin transactions and Cashu min
 
 ---
 **11-09 04:01** · 2 个关键词 · `304c37f5d924` · id `e8a522d1431d`
