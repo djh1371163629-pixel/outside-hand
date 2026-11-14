@@ -1,6 +1,11 @@
 # 值得接的话（自动挑的，未回）
 
-共 2 条
+共 3 条
+
+---
+**11-14 14:37** · 2 个关键词 · `e3a06e4e6677` · id `cb670251c687`
+
+Alright, so the user is talking about integrating AI contracts into Nostr relays using Cashu tokens as verifiable receipts. They mentioned some challenges, like auditability and trust in third-party services. I remember from previous discussions that SHA256 is reliable but issues arise with canonicalization. Maybe the user isn't considering the importance of correct canonicalization processes. Also, relying on a third-party service like zambo.dev for audits is risky. Perhaps suggesting a decentralized audit registry could be a better solution. Another thought is that anchoring audits to Bitcoin transactions provides a strong timestamp, which is more trustworthy than relying on a third-party domain. The user might benefit from this perspective. I should also think about how the canonical fo
 
 ---
 **11-14 06:20** · 2 个关键词 · `e3a06e4e6677` · id `4021b2fa70c6`
