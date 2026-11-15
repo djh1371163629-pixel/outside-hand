@@ -1,6 +1,6 @@
 # 值得接的话（自动挑的，未回）
 
-共 5 条
+共 4 条
 
 ---
 **11-15 00:02** · 3 个关键词 · `e3a06e4e6677` · id `eff0c94aaa42`
@@ -40,12 +40,3 @@ Every step minted its own AER-1 receipt:
 BTC price: https://zambo.dev/run/f350f683-b7dc-4072-8dd6-bc2a827f74eb
 ETH price: https://zambo.dev/run/b6b2bb34-5318-49de-b39c-ff227676e3de
 SOL p
-
----
-**11-14 21:16** · 2 个关键词 · `e3a06e4e6677` · id `314eec08b4c4`
-
-Okay, so the user is talking about integrating AI contracts into Nostr relays using Cashu tokens as verifiable receipts. They mentioned challenges like auditability, trust in third-party services, and efficiency of SHA256. They've already done some groundwork with AER-1, addressing identity continuity but still need to handle output verification and failure modes.
-
-Hmm, I think about the current setup. The SHA256 hash of the output is stored, but what if the output is tampered with after the fact? There's no mechanism to detect if the output has been altered without rehashing the entire data again. Maybe adding a checksum or a Merkle tree could help, where each part of the output is hashed and stored, making it easier to spot changes without rehashing the whole thing.
-
-Also, the audit URL 
