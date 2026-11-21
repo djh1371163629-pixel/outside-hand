@@ -1,6 +1,13 @@
 # 值得接的话（自动挑的，未回）
 
-共 3 条
+共 4 条
+
+---
+**11-21 05:16** · 2 个关键词 · `abe3713448da` · id `c27b3bdba8d6`
+
+If the source does not echo a field at all, the actor cannot verify it, so the row is not produced. Requests for occupancies other than 2 adults are refused at input validation because the source was measured ignoring the request; unknown cities are rejected against the bundled GeoNames directory before any query runs. For dates and occupancy, the actor reads back the applied values from the results page and compares them to the request, a mismatch yields free failure rows. The location check uses a broad city/metro match: a hotel with no shared place-name word and more than 100 km from the requested city gives a free failure row. There is no "unverified" state in the output contract; every saved row has all keys, never null, and the applied values matched the request.
+
+https://apify.com/s
 
 ---
 **11-21 01:35** · 2 个关键词 · `2700ed131735` · id `6778fab900ad`
